@@ -94,7 +94,7 @@ Included in `assets/logos/`:
 |------|-------|
 | **Format** | PNG + PDF |
 | **Instagram Story** | 1080 × 1920px |
-| **Instagram Post** | 1080 × 1080px |
+| **Instagram Post (PRIMARY)** | **1080 × 1440px** |
 | **LinkedIn/Slack share** | 1200 × 630px |
 | **Print-ready (optional)** | A3 (297 × 420mm), 300 DPI, CMYK |
 | **File format** | Editable source file (Figma, AI, or PSD) + exports |
