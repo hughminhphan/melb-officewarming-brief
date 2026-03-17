@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyra Technologies — Melbourne Officewarming Design Brief</title>
+<style>
+  @import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap');
+
+  @page {
+    size: A4;
+    margin: 28mm 24mm 28mm 24mm;
+    @bottom-center {
+      content: "Lyra Technologies — Confidential";
+      font-family: 'Satoshi', sans-serif;
+      font-size: 8pt;
+      color: #9E9EA0;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-family: 'Satoshi', sans-serif;
+      font-size: 8pt;
+      color: #9E9EA0;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Satoshi', -apple-system, sans-serif;
+    font-size: 10pt;
+    line-height: 1.6;
+    color: #D4D4D6;
+    background: #010314;
+  }
+
+  /* Cover page */
+  .cover {
+    page-break-after: always;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(158, 72, 254, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(44, 66, 230, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .cover-logo {
+    width: 140px;
+    margin-bottom: 48px;
+    opacity: 0.9;
+  }
+
+  .cover h1 {
+    font-size: 32pt;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .cover h1 span {
+    background: linear-gradient(263deg, #9E48FE, #2C42E6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cover-subtitle {
+    font-size: 14pt;
+    color: #9E9EA0;
+    font-weight: 400;
+    margin-bottom: 48px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 16px;
+  }
+
+  .cover-meta-item {
+    font-size: 9pt;
+    color: #9E9EA0;
+  }
+
+  .cover-meta-item strong {
+    display: block;
+    color: #D4D4D6;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #9E48FE, #2C42E6);
+    border-radius: 2px;
+    margin: 24px 0;
+  }
+
+  /* Section styling */
+  h2 {
+    font-size: 16pt;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin: 32px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(181, 155, 252, 0.2);
+    letter-spacing: -0.3px;
+  }
+
+  h2 .section-num {
+    color: #B59BFC;
+    font-weight: 500;
+    margin-right: 4px;
+  }
+
+  h3 {
+    font-size: 12pt;
+    font-weight: 500;
+    color: #B59BFC;
+    margin: 20px 0 10px 0;
+  }
+
+  p {
+    margin-bottom: 10px;
+    color: #D4D4D6;
+  }
+
+  strong { color: #FFFFFF; font-weight: 500; }
+
+  a {
+    color: #B59BFC;
+    text-decoration: none;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 16px 0;
+    font-size: 9.5pt;
+  }
+
+  thead th {
+    background: #1D1D22;
+    color: #B59BFC;
+    font-weight: 500;
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid rgba(181, 155, 252, 0.3);
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  tbody td {
+    padding: 7px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    color: #D4D4D6;
+    vertical-align: top;
+  }
+
+  tbody tr:nth-child(even) td {
+    background: rgba(29, 29, 34, 0.5);
+  }
+
+  /* Lists */
+  ul, ol {
+    margin: 8px 0 12px 20px;
+    color: #D4D4D6;
+  }
+
+  li {
+    margin-bottom: 4px;
+    padding-left: 4px;
+  }
+
+  li::marker {
+    color: #B59BFC;
+  }
+
+  /* Callout boxes */
+  .callout {
+    background: #1D1D22;
+    border-left: 3px solid #B59BFC;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+
+  .callout-warning {
+    border-left-color: #FFA726;
+  }
+
+  .callout-warning strong { color: #FFA726; }
+
+  .callout p { margin-bottom: 0; }
+
+  /* Code / file tree */
+  .file-tree {
+    background: #1D1D22;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 8.5pt;
+    line-height: 1.7;
+    color: #9E9EA0;
+    margin: 12px 0;
+    white-space: pre;
+  }
+
+  .file-tree strong { color: #B59BFC; }
+
+  /* Colour swatches */
+  .swatch-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+
+  .swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  /* Page break utility */
+  .page-break { page-break-before: always; }
+
+  /* Section divider */
+  hr {
+    border: none;
+    height: 1px;
+    background: rgba(181, 155, 252, 0.15);
+    margin: 24px 0;
+  }
+
+  /* Do / Don't columns */
+  .do-dont {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0;
+  }
+
+  .do-col, .dont-col {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 9.5pt;
+  }
+
+  .do-col {
+    background: rgba(76, 175, 80, 0.08);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+  }
+
+  .dont-col {
+    background: rgba(244, 67, 54, 0.08);
+    border: 1px solid rgba(244, 67, 54, 0.2);
+  }
+
+  .do-col h4 { color: #66BB6A; margin-bottom: 8px; font-size: 10pt; }
+  .dont-col h4 { color: #EF5350; margin-bottom: 8px; font-size: 10pt; }
+
+  /* Gradient text accent */
+  .gradient-text {
+    background: linear-gradient(263deg, #9E48FE, #2C42E6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <img src="assets/logos/logo-white.png" alt="Lyra" class="cover-logo">
+  <h1>Melbourne<br><span>Officewarming</span></h1>
+  <p class="cover-subtitle">Poster Design Brief</p>
+  <div class="cover-divider"></div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <strong>Prepared by</strong>
+      Hugh Phan, Growth Lead
+    </div>
+    <div class="cover-meta-item">
+      <strong>Date</strong>
+      17 March 2026
+    </div>
+    <div class="cover-meta-item">
+      <strong>Deadline</strong>
+      ASAP (event 27 Mar)
+    </div>
+    <div class="cover-meta-item">
+      <strong>Deliverables</strong>
+      Digital poster + print-ready
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: PROJECT OVERVIEW -->
+<h2><span class="section-num">01</span> Project Overview</h2>
+
+<p>Lyra Technologies is hosting an <strong>officewarming event</strong> to celebrate our new Melbourne office. We need a poster/invitation that can be shared digitally (Slack, Instagram, LinkedIn) and potentially printed for the office.</p>
+
+<h3>Event Details</h3>
+
+<table>
+  <thead>
+    <tr><th>Field</th><th>Detail</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Event name</strong></td><td>Lyra Melbourne Officewarming</td></tr>
+    <tr><td><strong>Date</strong></td><td>Thursday, 27 March 2026</td></tr>
+    <tr><td><strong>Time</strong></td><td>TBC (likely evening — confirm with Hugh)</td></tr>
+    <tr><td><strong>Venue</strong></td><td>Lyra Melbourne Office, Collins Street, Melbourne VIC</td></tr>
+    <tr><td><strong>Who's invited</strong></td><td>Lyra team (Sydney + Melbourne), clients, partners, friends of Lyra</td></tr>
+    <tr><td><strong>Vibe</strong></td><td>Casual celebration, startup energy, community gathering</td></tr>
+    <tr><td><strong>RSVP</strong></td><td>TBC (likely Luma or Slack — confirm with Hugh)</td></tr>
+  </tbody>
+</table>
+
+<div class="callout callout-warning">
+  <p><strong>Note to designer:</strong> Some event details (exact time, RSVP link, dress code) may need to be confirmed. Design with placeholder text that's easy to swap.</p>
+</div>
+
+<hr>
+
+<!-- SECTION 2: ABOUT LYRA -->
+<h2><span class="section-num">02</span> About Lyra</h2>
+
+<p><strong>Lyra Technologies</strong> is a digital product studio based in Australia. We pair founding-calibre engineers with startups and scale-ups to build products. Think of us as the team you call when you need it built right the first time.</p>
+
+<table>
+  <thead>
+    <tr><th>Fact</th><th>Detail</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Tagline</strong></td><td>"Founding engineers for 75+ SV startups"</td></tr>
+    <tr><td><strong>Team size</strong></td><td>70+ people across Sydney (HQ, Barangaroo) and Melbourne (Collins St)</td></tr>
+    <tr><td><strong>Clients</strong></td><td>75+ projects, 10+ YC companies</td></tr>
+    <tr><td><strong>Engineers from</strong></td><td>Canva, Eucalyptus, Instagram, YC-backed startups</td></tr>
+    <tr><td><strong>Culture</strong></td><td>Young, high-energy, builder mentality. Late nights, chess clubs, bouldering, cafe runs, shipping code fast.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p>The Melbourne office is newer and growing fast — this officewarming is a milestone moment. The energy should feel like <strong>"we've arrived"</strong> not "we're corporate."</p>
+</div>
+
+<hr>
+
+<!-- SECTION 3: BRAND GUIDELINES -->
+<div class="page-break"></div>
+<h2><span class="section-num">03</span> Brand Guidelines</h2>
+
+<h3>Typography</h3>
+
+<table>
+  <thead>
+    <tr><th>Typeface</th><th>Use</th><th>Weight</th><th>Source</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Satoshi</strong></td>
+      <td>Primary Lyra brand font — headings, body, web, all materials</td>
+      <td>Regular (400), Medium (500)</td>
+      <td><a href="https://www.fontshare.com/fonts/satoshi">Fontshare</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout callout-warning">
+  <p><strong>Important:</strong> Lyra uses Satoshi as its sole typeface. Do NOT use Space Grotesk, Basement Grotesque, or Helvetica Light — those belong to a separate personal brand, not Lyra.</p>
+</div>
+
+<p>Use <strong>Satoshi</strong> throughout. Different weights (Regular vs Medium) provide enough contrast. Do NOT use more than 2 typefaces on the poster.</p>
+
+<h3>Colour Palette</h3>
+
+<div class="swatch-row"><span class="swatch" style="background: #000000;"></span> <strong>#000000</strong> — Background (pure black)</div>
+<div class="swatch-row"><span class="swatch" style="background: #010314;"></span> <strong>#010314</strong> — Background alt (dark navy)</div>
+<div class="swatch-row"><span class="swatch" style="background: #D4D4D6;"></span> <strong>#D4D4D6</strong> — Primary text (light gray)</div>
+<div class="swatch-row"><span class="swatch" style="background: #9E9EA0;"></span> <strong>#9E9EA0</strong> — Secondary text (mid gray)</div>
+<div class="swatch-row"><span class="swatch" style="background: #B59BFC;"></span> <strong>#B59BFC</strong> — Accent purple (key brand accent, use at ~42% opacity for glow)</div>
+<div class="swatch-row"><span class="swatch" style="background: linear-gradient(90deg, #9E48FE, #2C42E6);"></span> <strong>#9E48FE → #2C42E6</strong> — Gradient accent (purple-to-blue, CTAs + highlights)</div>
+<div class="swatch-row"><span class="swatch" style="background: #421E6B;"></span> <strong>#421E6B</strong> — Deep purple (background accent zones)</div>
+<div class="swatch-row"><span class="swatch" style="background: #1D1D22;"></span> <strong>#1D1D22</strong> — Card/surface (dark charcoal)</div>
+<div class="swatch-row"><span class="swatch" style="background: #FAF9F5;"></span> <strong>#FAF9F5</strong> — Warm off-white (use sparingly)</div>
+
+<p><strong>Key principle:</strong> Dark, minimal, premium aesthetic. Lots of negative space. Subtle glassmorphism (frosted glass effects, translucent borders). The boldness comes from ONE element at a time — not everything screaming.</p>
+
+<h3>Logo</h3>
+
+<table>
+  <thead>
+    <tr><th>File</th><th>Size</th><th>Use</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>logo-white.png</td><td>981 x 360px</td><td>White wordmark — use on dark backgrounds</td></tr>
+    <tr><td>logo-black.png</td><td>981 x 360px</td><td>Black wordmark — use on light backgrounds</td></tr>
+    <tr><td>logo-icon.png</td><td>330 x 330px</td><td>Icon mark only</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Usage:</strong> Logo should be present but not dominant. Bottom or top corner placement. Let the event messaging be the hero.</p>
+
+<h3>Visual Style</h3>
+
+<ul>
+  <li><strong>Dark, minimal, premium</strong> — clean layouts, generous whitespace</li>
+  <li><strong>Glassmorphism accents</strong> — subtle frosted glass effects, translucent borders</li>
+  <li><strong>Border radius:</strong> 12px on cards/containers (rounded, not pill)</li>
+  <li><strong>Photography:</strong> Use real team/office photos where possible</li>
+  <li><strong>NO stock photos.</strong> Use the real office and real people, or abstract/geometric design elements.</li>
+</ul>
+
+<hr>
+
+<!-- SECTION 4: DELIVERABLES -->
+<div class="page-break"></div>
+<h2><span class="section-num">04</span> Deliverables &amp; Specifications</h2>
+
+<h3>Formats Required</h3>
+
+<table>
+  <thead>
+    <tr><th>Format</th><th>Dimensions</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Instagram Story</strong></td><td>1080 x 1920px</td><td>Primary distribution</td></tr>
+    <tr><td><strong>Instagram Post</strong></td><td>1080 x 1080px</td><td>Square crop</td></tr>
+    <tr><td><strong>LinkedIn / Slack</strong></td><td>1200 x 630px</td><td>OG image ratio</td></tr>
+    <tr><td><strong>Print-ready (optional)</strong></td><td>A3 (297 x 420mm)</td><td>300 DPI, CMYK</td></tr>
+  </tbody>
+</table>
+
+<p><strong>File format:</strong> Editable source file (Figma, AI, or PSD) + PNG/PDF exports</p>
+
+<h3>Content to Include</h3>
+
+<div class="do-dont">
+  <div class="do-col">
+    <h4>Must have</h4>
+    <ul>
+      <li>Lyra logo</li>
+      <li>"Melbourne Officewarming" (or similar)</li>
+      <li>Date: Thursday 27 March 2026</li>
+      <li>Location: Collins Street, Melbourne</li>
+      <li>Time: [PLACEHOLDER]</li>
+      <li>RSVP info: [PLACEHOLDER]</li>
+    </ul>
+  </div>
+  <div class="do-col">
+    <h4>Nice to have</h4>
+    <ul>
+      <li>Melbourne office photo as background</li>
+      <li>Subtle startup/builder culture reference</li>
+      <li>"You're invited" — warm, casual tone</li>
+    </ul>
+  </div>
+</div>
+
+<div class="dont-col" style="margin-top: 12px;">
+  <h4>Do NOT include</h4>
+  <ul>
+    <li>Corporate jargon ("synergy", "ecosystem")</li>
+    <li>Stock imagery</li>
+    <li>QR codes (unless requested later)</li>
+  </ul>
+</div>
+
+<hr>
+
+<!-- SECTION 5: MOOD & DIRECTION -->
+<h2><span class="section-num">05</span> Mood &amp; Direction</h2>
+
+<h3>Tone</h3>
+<p>Celebratory but not corporate. Think <strong>"house party invite designed by a tech company"</strong> not "corporate event flyer."</p>
+
+<ul>
+  <li><strong>Warm</strong> — you're genuinely invited, not just filling seats</li>
+  <li><strong>Confident</strong> — we're proud of the new office</li>
+  <li><strong>Minimal</strong> — let the design breathe, don't overcrowd</li>
+</ul>
+
+<h3>Design References</h3>
+<ul>
+  <li>Lyra's website: <a href="https://lyratechnologies.com.au">lyratechnologies.com.au</a> — match this aesthetic</li>
+  <li>Dark backgrounds with purple accent glows</li>
+  <li>Clean typography with generous spacing</li>
+  <li>If using photography, add slight gradient overlays to maintain the dark theme</li>
+</ul>
+
+<div class="do-dont">
+  <div class="do-col">
+    <h4>Do</h4>
+    <ul>
+      <li>Match the website's dark, premium aesthetic</li>
+      <li>Use purple accents sparingly</li>
+      <li>Keep generous whitespace</li>
+      <li>Use real Melbourne office photos</li>
+    </ul>
+  </div>
+  <div class="dont-col">
+    <h4>Don't</h4>
+    <ul>
+      <li>Make it look like a corporate annual report</li>
+      <li>Use bright/neon colours outside the purple palette</li>
+      <li>Overcrowd with text</li>
+      <li>Use generic event poster templates</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- SECTION 6: ASSETS -->
+<div class="page-break"></div>
+<h2><span class="section-num">06</span> Assets Included</h2>
+
+<div class="file-tree">melb-officewarming-brief/
+├── <strong>DESIGN-BRIEF.pdf</strong>           This document
+├── assets/
+│   ├── <strong>logos/</strong>
+│   │   ├── logo-white.png        (981x360, white wordmark)
+│   │   ├── logo-black.png        (981x360, black wordmark)
+│   │   └── logo-icon.png         (330x330, icon only)
+│   ├── <strong>office-photos/</strong>           10 Melbourne office photos
+│   │   ├── 2026-03-06_*.jpg      (7 photos — interior/exterior)
+│   │   └── 2026-03-09_*.jpg      (3 photos — office looking great)
+│   ├── <strong>reference-photos/</strong>        28 photos — past Lyra events (mood board)
+│   │   ├── team-photos/          (4 — group shots, team energy)
+│   │   ├── bbq-party/            (10 — celebration vibe, closest to officewarming)
+│   │   ├── builders-brunch/      (3 — social event, food, atmosphere)
+│   │   ├── cross-office/         (3 — Syd x Melb crossover)
+│   │   ├── welcome-dinner/       (2 — first ever Lyra welcome dinner)
+│   │   ├── office-culture/       (1 — office culture snapshot)
+│   │   └── banner/               (1 — existing Lyra event banner)
+│   └── <strong>fonts-reference/</strong>
+│       └── Download Satoshi from fontshare.com</div>
+
+<h3>How to use the photos</h3>
+
+<table>
+  <thead>
+    <tr><th>Folder</th><th>Usage</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>office-photos/</strong></td><td>Use directly on the poster — Melbourne office shots, cleared for use</td></tr>
+    <tr><td><strong>reference-photos/</strong></td><td>NOT for direct use. These show the vibe and energy of Lyra events. Use as a mood board to understand the culture.</td></tr>
+    <tr><td><strong>reference-photos/banner/</strong></td><td>Shows existing Lyra event branding for style consistency</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION 7: TIMELINE -->
+<h2><span class="section-num">07</span> Timeline</h2>
+
+<table>
+  <thead>
+    <tr><th>Milestone</th><th>Date</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Brief sent</strong></td><td>Mon 17 March 2026</td></tr>
+    <tr><td><strong>First draft</strong></td><td>Wed 19 March 2026</td></tr>
+    <tr><td><strong>Revisions</strong></td><td>Thu 20 March 2026</td></tr>
+    <tr><td><strong>Final approved</strong></td><td>Fri 21 March 2026</td></tr>
+    <tr><td><strong>Event</strong></td><td>Thu 27 March 2026</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION 8: CONTACTS -->
+<h2><span class="section-num">08</span> Contacts</h2>
+
+<table>
+  <thead>
+    <tr><th>Role</th><th>Name</th><th>Channel</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Growth Lead (primary)</strong></td><td>Hugh Phan</td><td>Slack / Email</td></tr>
+    <tr><td><strong>Growth Coordinator</strong></td><td>Gia</td><td>Slack</td></tr>
+    <tr><td><strong>Design support</strong></td><td>Duke</td><td>Slack</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<!-- SECTION 9: NOTES -->
+<h2><span class="section-num">09</span> Notes for Designer</h2>
+
+<ol>
+  <li><strong>Placeholder text is fine</strong> for time/RSVP — these will be confirmed and swapped in before final export.</li>
+  <li><strong>The Melbourne office is on Collins Street</strong> — if you want to reference this in the design (e.g., a subtle "Collins St" detail), go for it.</li>
+  <li><strong>Lyra has a cursive logo variant</strong> — available on request if you want a more playful feel.</li>
+  <li><strong>Previous reference:</strong> There's an Engfest poster that Duke designed — ask Hugh if you want to see it for style reference.</li>
+  <li><strong>Consent:</strong> All office photos provided are cleared for use. If you want team member photos, check with Hugh first (content consent system is being implemented).</li>
+</ol>
+
+</body>
+</html>

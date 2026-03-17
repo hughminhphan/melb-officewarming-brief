@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lyra — Melbourne Officewarming Design Brief</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #010314;
+    --surface: #1D1D22;
+    --surface-hover: #26262c;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(181,155,252,0.25);
+    --text-primary: #D4D4D6;
+    --text-secondary: #9E9EA0;
+    --text-white: #FFFFFF;
+    --accent: #B59BFC;
+    --accent-dim: rgba(181,155,252,0.42);
+    --gradient-start: #9E48FE;
+    --gradient-end: #2C42E6;
+    --deep-purple: #421E6B;
+    --green: #66BB6A;
+    --red: #EF5350;
+    --orange: #FFA726;
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Satoshi', -apple-system, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--text-primary);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 48px 80px;
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(158,72,254,0.12) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(44,66,230,0.08) 0%, transparent 60%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border-accent);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 900;
+    color: var(--text-white);
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(263deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+    max-width: 500px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .meta-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  .meta-item strong {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+
+  /* ── SECTIONS ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-white);
+    margin: 32px 0 12px;
+  }
+
+  p { margin-bottom: 16px; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin: 16px 0;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover { border-color: var(--border-accent); }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  /* ── TABLES ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  thead th {
+    background: var(--surface);
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+    padding: 10px 16px;
+    border-bottom: 2px solid var(--border-accent);
+  }
+
+  tbody td {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  tbody tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* ── CALLOUTS ── */
+  .callout {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  .callout-warning { border-left-color: var(--orange); }
+  .callout-warning strong { color: var(--orange); }
+
+  .callout p:last-child { margin-bottom: 0; }
+
+  /* ── SWATCHES ── */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .swatch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 0;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .swatch-card:hover { border-color: var(--border-accent); }
+
+  .swatch-preview {
+    height: 56px;
+    width: 100%;
+  }
+
+  .swatch-info {
+    padding: 10px 14px;
+  }
+
+  .swatch-hex {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-white);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .swatch-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  /* ── DO / DON'T ── */
+  .do-dont {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .do-col, .dont-col {
+    padding: 20px;
+    border-radius: var(--radius);
+    font-size: 14px;
+  }
+
+  .do-col {
+    background: rgba(76,175,80,0.06);
+    border: 1px solid rgba(76,175,80,0.2);
+  }
+
+  .dont-col {
+    background: rgba(244,67,54,0.06);
+    border: 1px solid rgba(244,67,54,0.2);
+  }
+
+  .do-col h4 { color: var(--green); font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+  .dont-col h4 { color: var(--red); font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+
+  ul, ol { margin: 8px 0 16px 20px; }
+  li { margin-bottom: 6px; }
+  li::marker { color: var(--accent); }
+
+  /* ── FILE TREE ── */
+  .file-tree {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin: 16px 0;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .file-tree .highlight { color: var(--accent); font-weight: 500; }
+  .file-tree .comment { color: #555; }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .photo-grid img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .photo-grid img:hover {
+    border-color: var(--accent);
+    transform: scale(1.02);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin: 24px 0;
+    padding-left: 28px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 1px;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 18px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-date {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .timeline-label {
+    font-size: 14px;
+    color: var(--text-white);
+    font-weight: 500;
+  }
+
+  /* ── CONTACTS ── */
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .contact-card .role {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  .contact-card .name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-white);
+  }
+
+  .contact-card .channel {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* ── NOTES ── */
+  .note-list {
+    counter-reset: notes;
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .note-list li {
+    counter-increment: notes;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 16px;
+  }
+
+  .note-list li::before {
+    content: counter(notes);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── SPECS CHIPS ── */
+  .spec-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .spec-chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .spec-chip strong {
+    color: var(--text-white);
+    font-weight: 500;
+  }
+
+  .spec-chip .dim {
+    color: var(--accent);
+    font-family: 'SF Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px 60px; }
+    .container { padding: 0 20px; }
+    .do-dont { grid-template-columns: 1fr; }
+    .contact-cards { grid-template-columns: 1fr; }
+    .hero-meta { gap: 24px; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Design Brief</div>
+  <h1>Melbourne<br><span>Officewarming</span></h1>
+  <p class="hero-sub">Poster design brief for an external freelancer. Everything you need is here.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><strong>Prepared by</strong>Hugh Phan, Growth Lead</div>
+    <div class="meta-item"><strong>Date</strong>17 March 2026</div>
+    <div class="meta-item"><strong>Deadline</strong>ASAP — event 27 Mar</div>
+    <div class="meta-item"><strong>Deliverables</strong>Digital poster + print</div>
+  </div>
+</div>
+
+<!-- 01 OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="section-label fade-in">01</div>
+    <h2 class="fade-in">Project Overview</h2>
+    <p class="fade-in">Lyra Technologies is hosting an <strong>officewarming event</strong> to celebrate our new Melbourne office. We need a poster/invitation for digital distribution (Slack, Instagram, LinkedIn) and optional print.</p>
+
+    <h3 class="fade-in">Event Details</h3>
+    <table class="fade-in">
+      <thead><tr><th>Field</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Event</strong></td><td>Lyra Melbourne Officewarming</td></tr>
+        <tr><td><strong>Date</strong></td><td>Thursday, 27 March 2026</td></tr>
+        <tr><td><strong>Time</strong></td><td>TBC (likely evening — confirm with Hugh)</td></tr>
+        <tr><td><strong>Venue</strong></td><td>Lyra Melbourne Office, Collins Street, Melbourne VIC</td></tr>
+        <tr><td><strong>Invited</strong></td><td>Lyra team (Syd + Melb), clients, partners, friends of Lyra</td></tr>
+        <tr><td><strong>Vibe</strong></td><td>Casual celebration, startup energy, community gathering</td></tr>
+        <tr><td><strong>RSVP</strong></td><td>TBC (likely Luma or Slack — confirm with Hugh)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-warning fade-in">
+      <p><strong>Note:</strong> Some details (time, RSVP, dress code) are TBC. Design with placeholder text that's easy to swap.</p>
+    </div>
+
+    <h3 class="fade-in">About Lyra</h3>
+    <p class="fade-in"><strong>Lyra Technologies</strong> is a digital product studio based in Australia. We pair founding-calibre engineers with startups and scale-ups to build products.</p>
+
+    <div class="card-grid fade-in">
+      <div class="card">
+        <strong>Tagline</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary)">"Founding engineers for 75+ SV startups"</p>
+      </div>
+      <div class="card">
+        <strong>Team</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary)">70+ people across Sydney (Barangaroo) &amp; Melbourne (Collins St)</p>
+      </div>
+      <div class="card">
+        <strong>Track Record</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary)">75+ projects, 10+ YC companies, engineers from Canva &amp; Instagram</p>
+      </div>
+      <div class="card">
+        <strong>Culture</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary)">Builder mentality. Chess clubs, bouldering, cafe runs, shipping code fast.</p>
+      </div>
+    </div>
+
+    <div class="callout fade-in">
+      <p>The Melbourne office is newer and growing fast. The energy should feel like <strong>"we've arrived"</strong> — not "we're corporate."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BRAND -->
+<section id="brand">
+  <div class="container">
+    <div class="section-label fade-in">02</div>
+    <h2 class="fade-in">Brand Guidelines</h2>
+
+    <h3 class="fade-in">Typography</h3>
+    <div class="card fade-in" style="display:flex;align-items:center;gap:24px;">
+      <div style="font-size:48px;font-weight:900;color:var(--text-white);line-height:1">Aa</div>
+      <div>
+        <strong style="font-size:18px">Satoshi</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary);font-size:14px">Primary Lyra brand font — headings, body, web, all materials.<br>Weights: Regular (400), Medium (500). Source: <a href="https://www.fontshare.com/fonts/satoshi">Fontshare</a></p>
+      </div>
+    </div>
+
+    <div class="callout callout-warning fade-in">
+      <p><strong>Important:</strong> Lyra uses Satoshi as its sole typeface. Do NOT use Space Grotesk, Basement Grotesque, or Helvetica Light — those belong to a separate personal brand.</p>
+    </div>
+
+    <h3 class="fade-in">Colour Palette</h3>
+    <div class="swatch-grid fade-in">
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#000000"></div>
+        <div class="swatch-info"><div class="swatch-hex">#000000</div><div class="swatch-name">Background</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#010314"></div>
+        <div class="swatch-info"><div class="swatch-hex">#010314</div><div class="swatch-name">Background alt (dark navy)</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#D4D4D6"></div>
+        <div class="swatch-info"><div class="swatch-hex">#D4D4D6</div><div class="swatch-name">Primary text</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#9E9EA0"></div>
+        <div class="swatch-info"><div class="swatch-hex">#9E9EA0</div><div class="swatch-name">Secondary text</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#B59BFC"></div>
+        <div class="swatch-info"><div class="swatch-hex">#B59BFC</div><div class="swatch-name">Accent purple</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:linear-gradient(90deg,#9E48FE,#2C42E6)"></div>
+        <div class="swatch-info"><div class="swatch-hex">#9E48FE → #2C42E6</div><div class="swatch-name">Gradient accent</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#421E6B"></div>
+        <div class="swatch-info"><div class="swatch-hex">#421E6B</div><div class="swatch-name">Deep purple</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#1D1D22"></div>
+        <div class="swatch-info"><div class="swatch-hex">#1D1D22</div><div class="swatch-name">Card / surface</div></div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-preview" style="background:#FAF9F5"></div>
+        <div class="swatch-info"><div class="swatch-hex">#FAF9F5</div><div class="swatch-name">Warm off-white (sparingly)</div></div>
+      </div>
+    </div>
+
+    <p class="fade-in"><strong>Key principle:</strong> Dark, minimal, premium. Lots of negative space. Subtle glassmorphism. Boldness from ONE element at a time.</p>
+
+    <h3 class="fade-in">Logo</h3>
+    <div class="card-grid fade-in">
+      <div class="card" style="text-align:center">
+        <img src="assets/logos/logo-white.png" alt="Lyra white logo" style="height:40px;margin-bottom:12px">
+        <div style="font-size:12px;color:var(--text-secondary)">logo-white.png · 981×360 · Dark backgrounds</div>
+      </div>
+      <div class="card" style="text-align:center;background:#FAF9F5">
+        <img src="assets/logos/logo-black.png" alt="Lyra black logo" style="height:40px;margin-bottom:12px">
+        <div style="font-size:12px;color:#666">logo-black.png · 981×360 · Light backgrounds</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <img src="assets/logos/logo-icon.png" alt="Lyra icon" style="height:48px;margin-bottom:12px">
+        <div style="font-size:12px;color:var(--text-secondary)">logo-icon.png · 330×330 · Icon only</div>
+      </div>
+    </div>
+
+    <p class="fade-in"><strong>Usage:</strong> Present but not dominant. Corner placement. Let the event messaging be the hero.</p>
+
+    <h3 class="fade-in">Visual Style</h3>
+    <ul class="fade-in">
+      <li><strong>Dark, minimal, premium</strong> — clean layouts, generous whitespace</li>
+      <li><strong>Glassmorphism accents</strong> — subtle frosted glass, translucent borders</li>
+      <li><strong>Border radius:</strong> 12px (rounded, not pill)</li>
+      <li><strong>Photography:</strong> Real team/office photos only</li>
+      <li><strong>NO stock photos.</strong> Authentic or abstract/geometric.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 03 DELIVERABLES -->
+<section id="deliverables">
+  <div class="container">
+    <div class="section-label fade-in">03</div>
+    <h2 class="fade-in">Deliverables</h2>
+
+    <h3 class="fade-in">Format Specs</h3>
+    <div class="spec-chips fade-in">
+      <div class="spec-chip"><strong>IG Story</strong><span class="dim">1080×1920</span></div>
+      <div class="spec-chip"><strong>IG Post</strong><span class="dim">1080×1080</span></div>
+      <div class="spec-chip"><strong>LinkedIn / Slack</strong><span class="dim">1200×630</span></div>
+      <div class="spec-chip"><strong>Print (optional)</strong><span class="dim">A3 · 300 DPI · CMYK</span></div>
+    </div>
+
+    <p class="fade-in"><strong>Files needed:</strong> Editable source (Figma, AI, or PSD) + PNG/PDF exports</p>
+
+    <h3 class="fade-in">Content</h3>
+    <div class="do-dont fade-in">
+      <div class="do-col">
+        <h4>Must have</h4>
+        <ul>
+          <li>Lyra logo</li>
+          <li>"Melbourne Officewarming"</li>
+          <li>Date: Thursday 27 March 2026</li>
+          <li>Location: Collins Street, Melbourne</li>
+          <li>Time: [PLACEHOLDER]</li>
+          <li>RSVP: [PLACEHOLDER]</li>
+        </ul>
+      </div>
+      <div class="do-col">
+        <h4>Nice to have</h4>
+        <ul>
+          <li>Melbourne office photo as background</li>
+          <li>Startup/builder culture reference</li>
+          <li>"You're invited" — warm, casual</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dont-col fade-in" style="margin-top:0">
+      <h4>Do NOT include</h4>
+      <ul>
+        <li>Corporate jargon ("synergy", "ecosystem")</li>
+        <li>Stock imagery</li>
+        <li>QR codes (unless requested)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 04 MOOD -->
+<section id="mood">
+  <div class="container">
+    <div class="section-label fade-in">04</div>
+    <h2 class="fade-in">Mood &amp; Direction</h2>
+
+    <div class="callout fade-in" style="font-size:16px;border-left-color:var(--gradient-start)">
+      <p>Think <strong>"house party invite designed by a tech company"</strong> — not corporate event flyer.</p>
+    </div>
+
+    <div class="card-grid fade-in">
+      <div class="card">
+        <strong style="color:var(--accent)">Warm</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary);font-size:14px">You're genuinely invited, not just filling seats</p>
+      </div>
+      <div class="card">
+        <strong style="color:var(--accent)">Confident</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary);font-size:14px">We're proud of the new office</p>
+      </div>
+      <div class="card">
+        <strong style="color:var(--accent)">Minimal</strong>
+        <p style="margin:4px 0 0;color:var(--text-secondary);font-size:14px">Let the design breathe</p>
+      </div>
+    </div>
+
+    <h3 class="fade-in">Design References</h3>
+    <ul class="fade-in">
+      <li>Match <a href="https://lyratechnologies.com.au">lyratechnologies.com.au</a> aesthetic</li>
+      <li>Dark backgrounds with purple accent glows</li>
+      <li>Clean typography, generous spacing</li>
+      <li>Photography with gradient overlays for dark theme</li>
+    </ul>
+
+    <h3 class="fade-in">Melbourne Office Photos</h3>
+    <p class="fade-in" style="font-size:14px;color:var(--text-secondary)">These are cleared for direct use on the poster.</p>
+    <div class="photo-grid fade-in">
+      <img src="assets/office-photos/2026-03-06_092050.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-06_092100.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-06_092108.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-06_092116.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-06_092125.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-06_092134.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-06_092150.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-09_215728.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-09_215729.jpg" alt="Melbourne office">
+      <img src="assets/office-photos/2026-03-09_215816.jpg" alt="Melbourne office">
+    </div>
+
+    <div class="do-dont fade-in" style="margin-top:24px">
+      <div class="do-col">
+        <h4>Do</h4>
+        <ul>
+          <li>Match the website's dark, premium look</li>
+          <li>Use purple accents sparingly</li>
+          <li>Keep generous whitespace</li>
+          <li>Use real office photos</li>
+        </ul>
+      </div>
+      <div class="dont-col">
+        <h4>Don't</h4>
+        <ul>
+          <li>Corporate annual report vibes</li>
+          <li>Bright/neon outside the purple palette</li>
+          <li>Overcrowd with text</li>
+          <li>Generic event poster templates</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ASSETS -->
+<section id="assets">
+  <div class="container">
+    <div class="section-label fade-in">05</div>
+    <h2 class="fade-in">Assets Included</h2>
+
+    <div class="file-tree fade-in"><span class="highlight">melb-officewarming-brief/</span>
+├── index.html                   <span class="comment">← This page</span>
+├── assets/
+│   ├── <span class="highlight">logos/</span>
+│   │   ├── logo-white.png        <span class="comment">981×360</span>
+│   │   ├── logo-black.png        <span class="comment">981×360</span>
+│   │   └── logo-icon.png         <span class="comment">330×330</span>
+│   ├── <span class="highlight">office-photos/</span>             <span class="comment">10 Melbourne office photos</span>
+│   │   ├── 2026-03-06_*.jpg      <span class="comment">7 interior/exterior</span>
+│   │   └── 2026-03-09_*.jpg      <span class="comment">3 office looking great</span>
+│   └── <span class="highlight">reference-photos/</span>          <span class="comment">28 mood board photos</span>
+│       ├── team-photos/          <span class="comment">4 group shots</span>
+│       ├── bbq-party/            <span class="comment">10 celebration vibes</span>
+│       ├── builders-brunch/      <span class="comment">3 social events</span>
+│       ├── cross-office/         <span class="comment">3 Syd × Melb</span>
+│       ├── welcome-dinner/       <span class="comment">2 first welcome dinner</span>
+│       ├── office-culture/       <span class="comment">1 culture snapshot</span>
+│       └── banner/               <span class="comment">1 existing event banner</span></div>
+
+    <h3 class="fade-in">Photo Usage Guide</h3>
+    <table class="fade-in">
+      <thead><tr><th>Folder</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><strong>office-photos/</strong></td><td>Use directly on poster — cleared for use</td></tr>
+        <tr><td><strong>reference-photos/</strong></td><td>Mood board only — shows the vibe and energy of Lyra events</td></tr>
+        <tr><td><strong>reference-photos/banner/</strong></td><td>Existing Lyra event branding for style consistency</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 06 TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-label fade-in">06</div>
+    <h2 class="fade-in">Timeline</h2>
+    <div class="timeline fade-in">
+      <div class="timeline-item"><div class="timeline-date">Mon 17 March</div><div class="timeline-label">Brief sent</div></div>
+      <div class="timeline-item"><div class="timeline-date">Wed 19 March</div><div class="timeline-label">First draft</div></div>
+      <div class="timeline-item"><div class="timeline-date">Thu 20 March</div><div class="timeline-label">Revisions</div></div>
+      <div class="timeline-item"><div class="timeline-date">Fri 21 March</div><div class="timeline-label">Final approved</div></div>
+      <div class="timeline-item"><div class="timeline-date">Thu 27 March</div><div class="timeline-label">Event day</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 CONTACTS -->
+<section id="contacts">
+  <div class="container">
+    <div class="section-label fade-in">07</div>
+    <h2 class="fade-in">Contacts</h2>
+    <div class="contact-cards fade-in">
+      <div class="contact-card">
+        <div class="role">Growth Lead (Primary)</div>
+        <div class="name">Hugh Phan</div>
+        <div class="channel">Slack / Email</div>
+      </div>
+      <div class="contact-card">
+        <div class="role">Growth Coordinator</div>
+        <div class="name">Gia</div>
+        <div class="channel">Slack</div>
+      </div>
+      <div class="contact-card">
+        <div class="role">Design Support</div>
+        <div class="name">Duke</div>
+        <div class="channel">Slack</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 NOTES -->
+<section id="notes">
+  <div class="container">
+    <div class="section-label fade-in">08</div>
+    <h2 class="fade-in">Notes for Designer</h2>
+    <ol class="note-list fade-in">
+      <li><strong>Placeholder text is fine</strong> for time/RSVP — will be confirmed and swapped before final export.</li>
+      <li><strong>Collins Street</strong> — feel free to reference "Collins St" as a subtle design detail.</li>
+      <li><strong>Cursive logo variant</strong> available on request for a more playful feel.</li>
+      <li><strong>Engfest poster</strong> — Duke designed a previous event poster. Ask Hugh if you want to see it.</li>
+      <li><strong>Consent</strong> — office photos are cleared. Team member photos require consent check with Hugh.</li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <p>Lyra Technologies &middot; Melbourne Officewarming Design Brief &middot; March 2026</p>
+</footer>
+
+<script>
+  // Scroll fade-in animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
