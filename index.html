@@ -41,6 +41,32 @@
   }
 
 
+  /* ── DRIVE CTA ── */
+  .drive-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, rgba(158,72,254,0.15), rgba(44,66,230,0.15));
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 16px 28px;
+    margin-bottom: 36px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-white);
+    text-decoration: none;
+    transition: all 0.3s;
+    flex-wrap: wrap;
+  }
+
+  .drive-cta:hover {
+    background: linear-gradient(135deg, rgba(158,72,254,0.3), rgba(44,66,230,0.3));
+    border-color: var(--text-white);
+    transform: translateY(-2px);
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(158,72,254,0.25);
+  }
+
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
@@ -557,6 +583,11 @@
   <div class="hero-badge">Design Brief</div>
   <h1>Melbourne<br><span>Officewarming</span></h1>
   <p class="hero-sub">Poster design brief for an external freelancer. Everything you need is here.</p>
+  <a href="https://drive.google.com/drive/folders/1Qyamm0CXQzWj_uDgTLCguZMQHEpmye-p" target="_blank" class="drive-cta">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="flex-shrink:0"><path d="M8.267 14.68l-1.6 2.77a.5.5 0 00.434.75h9.798a.5.5 0 00.434-.75l-1.6-2.77H8.267z" fill="#3777E3"/><path d="M15.733 14.68L11.9 8.001a.5.5 0 00-.866 0L7.2 14.68h8.533z" fill="#FFCF63"/><path d="M15.733 14.68l3.834-6.679a.5.5 0 00-.434-.75h-7.666l3.833 6.679.433.75z" fill="#11A861"/></svg>
+    Download all assets from Google Drive
+    <span style="font-size:12px;opacity:0.7">Logos, photos, reference images</span>
+  </a>
   <div class="hero-meta">
     <div class="meta-item"><strong>Prepared by</strong>Hugh Phan, Growth Lead</div>
     <div class="meta-item"><strong>Date</strong>17 March 2026</div>
